@@ -336,6 +336,19 @@ function addProduct(){
 renderProducts();
 
 </script>
+<script>
+async function loadProducts() {
+  try {
+    const response = await fetch("/api/products");
+    const products = await response.json();
 
+    console.log("Products from D1:", products);
+  } catch (error) {
+    console.error("خطا در دریافت محصولات:", error);
+  }
+}
+
+loadProducts();
+</script>
 </body>
 </html>
