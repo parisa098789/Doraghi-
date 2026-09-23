@@ -1,5 +1,8 @@
 name = "doraghi"
+main = "worker.js"
 compatibility_date = "2026-09-23"
 
 [assets]
 directory = "."
+binding = "ASSETS"
+run_worker_first = ["/api/*"]
