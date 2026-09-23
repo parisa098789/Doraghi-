@@ -6,3 +6,7 @@ compatibility_date = "2026-09-23"
 directory = "."
 binding = "ASSETS"
 run_worker_first = ["/api/*"]
+[[d1_databases]]
+binding = "DB"
+database_name = "doraghi-db"
+database_id = "ee6a74e4-909d-46b7-98dd-44d0886225e2"
