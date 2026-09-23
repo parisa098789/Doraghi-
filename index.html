@@ -1,178 +1,341 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دورقی | فروشگاه لوازم مو</title>
+<title>دورقی | فروشگاه لوازم برقی</title>
 
 <style>
 *{box-sizing:border-box}
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:#fff;
-  color:#333;
+  background:#0b0b0b;
+  color:#fff;
 }
 header{
-  background:#fff;
-  padding:18px 20px;
+  background:#111;
+  border-bottom:1px solid #c9a227;
+  padding:18px;
   text-align:center;
-  border-bottom:1px solid #eee;
   position:sticky;
   top:0;
   z-index:10;
 }
 .logo{
-  font-size:30px;
+  color:#d8b13d;
+  font-size:32px;
   font-weight:bold;
 }
-.logo span{color:#d46b8c}
+.subtitle{color:#ddd;margin-top:7px}
 .hero{
   padding:45px 20px;
   text-align:center;
-  background:linear-gradient(135deg,#fff1f5,#fff);
+  background:linear-gradient(135deg,#111,#050505);
 }
 .hero h1{
-  margin:0 0 12px;
+  color:#d8b13d;
   font-size:30px;
 }
-.hero p{
-  color:#777;
-  font-size:16px;
-}
+.hero p{color:#ddd}
 .container{
   max-width:1100px;
   margin:auto;
-  padding:25px 18px;
+  padding:25px 15px;
 }
-h2{
+.categories{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding:10px 0 25px;
+}
+.category{
+  min-width:140px;
+  padding:14px;
+  background:#151515;
+  border:1px solid #6d571d;
+  border-radius:12px;
   text-align:center;
-  margin:20px 0 25px;
+  color:#fff;
 }
 .products{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:18px;
 }
-.product{
-  border:1px solid #eee;
-  border-radius:18px;
-  padding:12px;
-  background:white;
-  box-shadow:0 3px 12px #0000000b;
+.card{
+  background:#151515;
+  border:1px solid #333;
+  border-radius:15px;
+  overflow:hidden;
+  transition:.2s;
 }
-.product-img{
-  height:150px;
-  border-radius:14px;
-  background:#f8f8f8;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:48px;
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#c9a227;
 }
-.product h3{
-  margin:12px 0 6px;
-  font-size:16px;
-}
-.price{
-  color:#d04f78;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-.order{
+.card img{
   width:100%;
-  border:0;
-  padding:11px;
-  border-radius:12px;
-  background:#d46b8c;
-  color:white;
-  font-size:14px;
+  height:210px;
+  object-fit:contain;
+  background:#fff;
 }
-.about{
-  margin-top:35px;
-  padding:25px;
-  background:#fff5f7;
-  border-radius:20px;
-  text-align:center;
-  line-height:2;
+.card-body{padding:15px}
+.card h3{margin:5px 0 10px}
+.price{
+  color:#d8b13d;
+  font-size:19px;
+  font-weight:bold;
+}
+button{
+  border:0;
+  border-radius:9px;
+  padding:11px 15px;
+  cursor:pointer;
+  font-family:inherit;
+}
+.buy{
+  width:100%;
+  margin-top:12px;
+  background:#d8b13d;
+  color:#111;
+  font-weight:bold;
+}
+.admin-btn{
+  background:#222;
+  color:#d8b13d;
+  border:1px solid #d8b13d;
+  margin-top:20px;
 }
 footer{
-  margin-top:35px;
-  padding:25px;
+  margin-top:40px;
+  padding:30px;
   text-align:center;
-  background:#222;
+  background:#111;
+  border-top:1px solid #333;
+  color:#aaa;
+}
+#admin{
+  display:none;
+  background:#101010;
+  padding:25px;
+  border-top:2px solid #d8b13d;
+}
+.admin-box{
+  max-width:700px;
+  margin:auto;
+}
+input,textarea{
+  width:100%;
+  padding:12px;
+  margin:7px 0 12px;
+  border-radius:8px;
+  border:1px solid #444;
+  background:#1c1c1c;
+  color:#fff;
+  font-family:inherit;
+}
+.admin-product{
+  border:1px solid #444;
+  padding:15px;
+  border-radius:12px;
+  margin:12px 0;
+}
+.save{
+  background:#d8b13d;
+  color:#111;
+  font-weight:bold;
+}
+.delete{
+  background:#8b2222;
   color:white;
 }
-@media(min-width:700px){
-  .products{grid-template-columns:repeat(4,1fr)}
+.add{
+  background:#333;
+  color:#d8b13d;
+  border:1px solid #d8b13d;
 }
+.hidden{display:none}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">دور<span>قی</span></div>
-  <div>فروشگاه لوازم مو و زیبایی</div>
+  <div class="logo">دورقی</div>
+  <div class="subtitle">فروشگاه لوازم برقی و خانگی</div>
 </header>
 
 <section class="hero">
-  <h1>به فروشگاه دورقی خوش آمدید 🌸</h1>
-  <p>زیبایی موهایت را با انتخابی خاص کامل کن</p>
+  <h1>لوازم برقی با قیمت مناسب</h1>
+  <p>محصولات کاربردی، باکیفیت و مناسب برای خانه</p>
+  <button class="admin-btn" onclick="openAdmin()">پنل مدیریت</button>
 </section>
 
 <div class="container">
 
-<h2>محصولات دورقی</h2>
+<h2>دسته‌بندی‌ها</h2>
 
-<div class="products">
-
-<div class="product">
-<div class="product-img">🎀</div>
-<h3>کش مو</h3>
-<div class="price">قیمت محصول</div>
-<button class="order">ثبت سفارش</button>
+<div class="categories">
+  <div class="category">سشوار</div>
+  <div class="category">بابلیس</div>
+  <div class="category">اتو مو</div>
+  <div class="category">ماشین اصلاح</div>
+  <div class="category">اسپیکر</div>
+  <div class="category">لوازم برقی کوچک</div>
 </div>
 
-<div class="product">
-<div class="product-img">✨</div>
-<h3>کلیپس مو</h3>
-<div class="price">قیمت محصول</div>
-<button class="order">ثبت سفارش</button>
-</div>
-
-<div class="product">
-<div class="product-img">🌸</div>
-<h3>اسکرانچی</h3>
-<div class="price">قیمت محصول</div>
-<button class="order">ثبت سفارش</button>
-</div>
-
-<div class="product">
-<div class="product-img">💗</div>
-<h3>گیر مو</h3>
-<div class="price">قیمت محصول</div>
-<button class="order">ثبت سفارش</button>
-</div>
+<h2>محصولات</h2>
+<div id="products" class="products"></div>
 
 </div>
 
-<div class="about">
-<h2>درباره دورقی</h2>
-<p>
-انواع لوازم مو با انتخابی زیبا و کاربردی.
-<br>
-برای دیدن محصولات و ثبت سفارش با ما در ارتباط باشید.
-</p>
-</div>
+<div id="admin">
+  <div class="admin-box">
+    <h2>پنل مدیریت دورقی</h2>
+    <p>اینجا می‌توانی محصولات را ویرایش کنی.</p>
 
+    <div id="adminProducts"></div>
+
+    <button class="add" onclick="addProduct()">➕ افزودن محصول</button>
+    <button class="save" onclick="saveProducts()">💾 ذخیره تغییرات</button>
+    <button class="delete" onclick="closeAdmin()">بستن پنل</button>
+  </div>
 </div>
 
 <footer>
-  <div>دورقی | فروشگاه لوازم مو</div>
-  <div>برای سفارش با ما در ارتباط باشید 💕</div>
+  دورقی © فروشگاه لوازم برقی
 </footer>
 
+<script>
+
+const defaultProducts = [
+{
+ name:"سشوار فیلیپس",
+ price:"۲۸۵۰",
+ image:"https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600"
+},
+{
+ name:"سشوار پاناسونیک",
+ price:"۲۷۰۰",
+ image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600"
+},
+{
+ name:"اسپیکر بلوتوثی",
+ price:"۱۲۰۰",
+ image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600"
+},
+{
+ name:"ماشین اصلاح",
+ price:"۱۸۵۰",
+ image:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600"
+}
+];
+
+let products = JSON.parse(localStorage.getItem("doraghiProducts")) || defaultProducts;
+
+function renderProducts(){
+  const box=document.getElementById("products");
+  box.innerHTML="";
+
+  products.forEach((p,i)=>{
+    box.innerHTML += `
+      <div class="card">
+        <img src="${p.image}" alt="${p.name}">
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <div class="price">${p.price} تومان</div>
+          <button class="buy" onclick="order('${p.name}')">
+            ثبت سفارش
+          </button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function order(name){
+  alert("برای ثبت سفارش «"+name+"» با ما تماس بگیرید.");
+}
+
+function openAdmin(){
+  const pass=prompt("رمز پنل مدیریت را وارد کنید:");
+
+  if(pass==="1234"){
+    document.getElementById("admin").style.display="block";
+    renderAdmin();
+    window.scrollTo(0,document.body.scrollHeight);
+  }else{
+    alert("رمز اشتباه است.");
+  }
+}
+
+function closeAdmin(){
+  document.getElementById("admin").style.display="none";
+}
+
+function renderAdmin(){
+  const box=document.getElementById("adminProducts");
+  box.innerHTML="";
+
+  products.forEach((p,i)=>{
+    box.innerHTML += `
+      <div class="admin-product">
+        <label>نام محصول</label>
+        <input id="name${i}" value="${p.name}">
+
+        <label>قیمت</label>
+        <input id="price${i}" value="${p.price}">
+
+        <label>آدرس عکس</label>
+        <input id="image${i}" value="${p.image}">
+
+        <button class="delete" onclick="removeProduct(${i})">
+          حذف محصول
+        </button>
+      </div>
+    `;
+  });
+}
+
+function saveProducts(){
+
+  products.forEach((p,i)=>{
+    p.name=document.getElementById("name"+i).value;
+    p.price=document.getElementById("price"+i).value;
+    p.image=document.getElementById("image"+i).value;
+  });
+
+  localStorage.setItem("doraghiProducts",JSON.stringify(products));
+
+  renderProducts();
+
+  alert("تغییرات ذخیره شد ✅");
+}
+
+function removeProduct(i){
+  if(confirm("این محصول حذف شود؟")){
+    products.splice(i,1);
+    localStorage.setItem("doraghiProducts",JSON.stringify(products));
+    renderAdmin();
+    renderProducts();
+  }
+}
+
+function addProduct(){
+
+  products.push({
+    name:"محصول جدید",
+    price:"۰",
+    image:""
+  });
+
+  renderAdmin();
+}
+
+renderProducts();
+
+</script>
+
 </body>
-  </html>
+</html>
